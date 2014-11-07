@@ -1,4 +1,4 @@
-package org.ope.utils;
+package org.jmope.server.utils;
 
 import java.io.IOException;
 import java.util.Properties;

@@ -4,11 +4,11 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.ope</groupId>
+		<groupId>org.jmope</groupId>
 		<artifactId>jmope</artifactId>
 		<version>1.0</version>
 	</parent>
-	<groupId>org.ope.server</groupId>
+	<groupId>org.jmope.server</groupId>
 	<artifactId>jmope-server</artifactId>
 	<name>jmope-server</name>
 	<url>http://maven.apache.org</url>
@@ -17,9 +17,9 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>org.mapdb</groupId>
-			<artifactId>mapdb</artifactId>
-			<version>1.0.6</version>
+			<groupId>org.jmope.core</groupId>
+			<artifactId>jmope-core</artifactId>
+			<version>1.0</version>
 		</dependency>
 
 		<dependency>

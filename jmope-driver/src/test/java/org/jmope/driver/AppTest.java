@@ -1,4 +1,4 @@
-package org.ope;
+package org.jmope.driver;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

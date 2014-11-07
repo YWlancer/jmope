@@ -1,7 +1,8 @@
-package org.ope.utils;
+package org.jmope.server.utils;
 
 import junit.framework.Assert;
 
+import org.jmope.server.utils.JMOPEConfig;
 import org.junit.Test;
 
 public class JMOPEConfigTest {

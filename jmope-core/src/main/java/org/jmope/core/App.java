@@ -1,4 +1,4 @@
-package org.ope;
+package org.jmope.core;
 
 /**
  * Hello world!

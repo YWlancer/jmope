@@ -1,4 +1,4 @@
-package org.ope.utils.datastructs;
+package org.jmope.server.utils.datastructs;
 
 import java.util.ArrayList;
 import java.util.List;

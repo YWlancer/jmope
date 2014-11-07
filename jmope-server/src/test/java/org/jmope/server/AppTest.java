@@ -1,4 +1,4 @@
-package org.ope.core;
+package org.jmope.server;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
