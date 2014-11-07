@@ -3,6 +3,13 @@ package org.ope.utils;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Load the configurations as a single instance.
+ * 
+ * @author sithum
+ *
+ */
+
 public class JMOPEConfig {
 	
 	private static final String CONFIG = "jmope-config.properties";
