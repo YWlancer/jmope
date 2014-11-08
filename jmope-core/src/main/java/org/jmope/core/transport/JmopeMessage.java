@@ -1,11 +1,14 @@
-package org.jmope.transport;
+package org.jmope.core.transport;
 
-public abstract class JMOPEMessage {
+
+public abstract class JmopeMessage {
 	
-	public final OpCode opcode;
+	public final HeaderPart header;
+	public final JmopeMessagePart body;
 	
-	protected JMOPEMessage(OpCode opcode) {
-		this.opcode = opcode;
+	protected JmopeMessage(OpCode opcode) {
+		this.header = new HeaderPart(opcode);
+		this.body = new BodyPart(this.header);
 	}
 	
 	public enum OpCode {
@@ -50,7 +53,11 @@ public abstract class JMOPEMessage {
 		REQUEST, RESPONSE
 	}
 	
-	public static abstract class Request extends JMOPEMessage {
+	public enum NodeRef {
+		ROOT, GET_LEFT, GET_RIGHT, INSERT_LEFT, INSERT_RIGHT
+	}
+
+	public static abstract class Request extends JmopeMessage {
 
 		protected Request(OpCode opcode) {
 			super(opcode);
@@ -61,7 +68,7 @@ public abstract class JMOPEMessage {
 		
 	}
 	
-	public static abstract class Response extends JMOPEMessage {
+	public static abstract class Response extends JmopeMessage {
 		
 		protected Response(OpCode opcode) {
 			super(opcode);
