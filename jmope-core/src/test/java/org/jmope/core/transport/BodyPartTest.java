@@ -139,4 +139,12 @@ public class BodyPartTest {
 		bodyPart.validate();
 	}
 
+	@Test
+	public void testDecode() throws Exception {
+		String body = NodeRef.ROOT.toString() + "|" + recordRef + "|column1|" + uuid + "|38siseur233encpeted";
+		bodyPart.decode(body);
+		Assert.assertEquals(body.length(), bodyPart.toString().length());
+		Assert.assertEquals(body, bodyPart.toString());
+	}
+
 }

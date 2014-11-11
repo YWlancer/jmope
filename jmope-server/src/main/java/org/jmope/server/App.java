@@ -14,6 +14,7 @@ public class App
     {
     	System.out.println(JmopeMessage.OpCode.opCodeIdx[5].toString());
     	byte [] b = ByteBuffer.allocate(8).putInt(5000).array();
-        System.out.println(new String(b));
+    	String t = ""+null;
+        System.out.println(t);
     }
 }

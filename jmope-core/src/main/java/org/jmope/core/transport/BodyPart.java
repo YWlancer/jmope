@@ -1,7 +1,9 @@
 package org.jmope.core.transport;
 
+import java.lang.reflect.Method;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.StringTokenizer;
 
 import org.jmope.core.transport.JmopeMessage.NodeRef;
 import org.jmope.core.transport.exceptions.JmopeBodyValidationException;
@@ -69,19 +71,30 @@ public class BodyPart extends Observable implements JmopeMessagePart {
 		this.setChanged();
 		this.notifyObservers();
 	}
+	
+	public void decode(String body) {
+		StringTokenizer tkz = new StringTokenizer(body, "|");
+		String [] tokens = new String[tkz.countTokens()];
+		
+		for (int i = 0; tkz.hasMoreElements(); i++) {
+			tokens[i] = tkz.nextToken();
+		}
+		
+		this.setNodeRef(JmopeMessage.NodeRef.valueOf(tokens[0]));
+		this.setRecordRef(tokens[1]);
+		this.setDataColumnRef(tokens[2]);
+		this.setUuid(tokens[3]);
+		this.setEncValue(tokens[4]);
+	}
 
 	@Override
 	public String toString() {
 		StringBuilder s = new StringBuilder();
-		if (this.nodeRef == null) {
-			s = s.append("");			
-		} else {
-			s = s.append(this.nodeRef.toString());
-		}
-		s = s.append("|").append(this.recordRef);
-		s = s.append("|").append(this.dataColumnRef);
-		s = s.append("|").append(this.uuid);
-		s = s.append("|").append(this.encValue);
+		s = (this.nodeRef == null) ? s.append("") : s.append(this.nodeRef.toString());
+		s = (this.recordRef == null) ? s.append("|").append("") : s.append("|").append(this.recordRef);
+		s = (this.dataColumnRef == null) ? s.append("|").append("") : s.append("|").append(this.dataColumnRef);
+		s = (this.uuid == null) ? s.append("|").append("") : s.append("|").append(this.uuid);
+		s = (this.encValue == null) ? s.append("|").append("") : s.append("|").append(this.encValue);
 
 		return s.toString();
 	}

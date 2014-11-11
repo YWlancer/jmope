@@ -1,5 +1,6 @@
 package org.jmope.core.transport;
 
+import java.util.StringTokenizer;
 import java.util.UUID;
 
 import junit.framework.Assert;
@@ -42,7 +43,7 @@ public class HeaderPartTest {
 	
 	@Test(expected = JmopeHeaderValidationException.class)
 	public void testValidateEmptyHeaderLength() throws Exception {
-		HeaderPart h = new HeaderPart(JmopeMessage.OpCode.INIT_REQ);
+		HeaderPart h = new HeaderPart();
 		h.setBodyLength(60);
 		h.validate();
 	}
@@ -81,4 +82,11 @@ public class HeaderPartTest {
 		Assert.assertEquals(expected, h.getBodyLength());
 	}
 
+	@Test
+	public void testDecode() throws Exception {
+		String expected = "0|REQUEST";
+		HeaderPart h = new HeaderPart();
+		h.decode(expected);
+		Assert.assertEquals(expected, h.toString());
+	}
 }

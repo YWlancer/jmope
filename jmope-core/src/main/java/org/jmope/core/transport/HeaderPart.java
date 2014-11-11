@@ -2,6 +2,7 @@ package org.jmope.core.transport;
 
 import java.util.Observable;
 import java.util.Observer;
+import java.util.StringTokenizer;
 
 import org.jmope.core.transport.JmopeMessage.OpCode;
 import org.jmope.core.transport.exceptions.JmopeHeaderValidationException;
@@ -10,12 +11,16 @@ public class HeaderPart implements Observer, JmopeMessagePart {
 
 	private static final long serialVersionUID = 4939900928465278280L;
 
-	public final OpCode opCode;
+	private OpCode opCode;
 	private long headerLength = 0;
 	private long bodyLength = 0;
 	
 	public HeaderPart(OpCode opCode) {
 		this.opCode = opCode;
+		this.headerLength = this.toString().getBytes().length;
+	}
+	
+	public HeaderPart() {
 	}
 
 	public void update(Observable o, Object arg) {
@@ -37,6 +42,24 @@ public class HeaderPart implements Observer, JmopeMessagePart {
 
 	public void setBodyLength(long bodyLength) {
 		this.bodyLength = bodyLength;
+	}
+	
+	public OpCode getOpCode() {
+		return opCode;
+	}
+
+	public void setOpCode(OpCode opCode) {
+		this.opCode = opCode;
+	}
+
+	public void decode(String header) {
+		StringTokenizer tkz = new StringTokenizer(header, "|");
+		String [] tokens = new String[tkz.countTokens()];
+		for (int i = 0; tkz.hasMoreElements(); i++) {
+			tokens[i] = tkz.nextToken();
+		}
+		this.opCode = OpCode.opCodeIdx[Integer.parseInt(tokens[0])];
+		this.headerLength = this.toString().getBytes().length;
 	}
 	
 	@Override
